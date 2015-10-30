@@ -1,0 +1,17 @@
+{
+  "name": "btags",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test/test"
+  },
+  "bin": {
+    "btags": "./index.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "astw-babylon": "^1.0.0"
+  }
+}
