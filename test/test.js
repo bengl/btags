@@ -24,10 +24,10 @@ var expectedOutput = '!_TAG_FILE_FORMAT\t2\t/extended format/\n' +
 
 var runFile = path.resolve(__dirname, '..', 'index.js');
 exec('node ' + runFile + ' test/file.js', function(err, stdout, stderr){
-    if (err) {
-        throw err;
-    }
-    console.log(stdout.toString());
-    console.assert(stdout.toString() === expectedOutput);
-    console.log('passed');
+  if (err) {
+    throw err;
+  }
+  console.log(stdout.toString());
+  console.assert(stdout.toString() === expectedOutput);
+  console.log('passed');
 });

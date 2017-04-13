@@ -17,50 +17,50 @@ console.log("!_TAG_PROGRAM_URL	http://github.com/bengl/btags	/github repository/
 console.log("!_TAG_PROGRAM_VERSION	"+require('./package').version+"	//");
 
 var handlers = {
-    ClassDeclaration: {type: 'c'},
-    MethodDefinition: {type: 'f', opts: function(item){
-        return {class: item.parent.parent.id.name};
-    }},
-    VariableDeclarator: {type: 'v'},
-    ImportDefaultSpecifier: {type: 'i'},
-    ImportSpecifier: {type: 'i'},
-    FunctionDeclaration: {type: function (item) {
-        var name = item.id.name;
-        return (name[0] === name[0].toUpperCase()) ? 'c' : 'f';
-        // yes. all uppercased-first-letter functions are classes. don't like it? tough.
-    }}
+  ClassDeclaration: {type: 'c'},
+  MethodDefinition: {type: 'f', opts: function(item){
+    return {class: item.parent.parent.id.name};
+  }},
+  VariableDeclarator: {type: 'v'},
+  ImportDefaultSpecifier: {type: 'i'},
+  ImportSpecifier: {type: 'i'},
+  FunctionDeclaration: {type: function (item) {
+    var name = item.id.name;
+    return (name[0] === name[0].toUpperCase()) ? 'c' : 'f';
+    // yes. all uppercased-first-letter functions are classes. don't like it? tough.
+  }}
 };
 
 var filePattern = process.argv[2];
 glob.sync(filePattern).forEach(doFile);
 
 function doFile (filename) {
-    var walk = astw(require('fs').readFileSync(filename).toString());
+  var walk = astw(require('fs').readFileSync(filename).toString());
 
-    walk(processItem(filename));
+  walk(processItem(filename));
 }
 
 function processItem (filename) {
-    return function (item) {
-        var handler = handlers[item.type];
-        if (handler) {
-            var type = typeof handler.type === 'function' ? handler.type(item) : handler.type;
-            var opts = typeof handler.opts === 'function' ? handler.opts(item) : {};
-            tag(item, filename, type, opts);
-        }
-    };
+  return function (item) {
+    var handler = handlers[item.type];
+    if (handler) {
+      var type = typeof handler.type === 'function' ? handler.type(item) : handler.type;
+      var opts = typeof handler.opts === 'function' ? handler.opts(item) : {};
+      tag(item, filename, type, opts);
+    }
+  };
 }
 
 function tag (item, filename, type, opts) {
-    var name = item[item.id ? 'id' : item.key ? 'key' : 'local'].name;
-    var tag = [
-        name,
-        filename,
-        item.loc.start.line+';"',
-        type
-    ];
-    Object.keys(opts).forEach(function(optname){
-        tag.push(optname+':'+opts[optname]);
-    });
-    console.log(tag.join('\t'));
+  var name = item[item.id ? 'id' : item.key ? 'key' : 'local'].name;
+  var tag = [
+    name,
+    filename,
+    item.loc.start.line+';"',
+    type
+  ];
+  Object.keys(opts).forEach(function(optname){
+    tag.push(optname+':'+opts[optname]);
+  });
+  console.log(tag.join('\t'));
 }
