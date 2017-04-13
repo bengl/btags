@@ -12,6 +12,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "astw-babylon": "^1.0.0"
+    "astw-babylon": "^1.0.0",
+    "glob": "^7.1.1"
   }
 }

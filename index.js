@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 /*
 Copyright 2015, Yahoo Inc. All rights reserved.
 Code licensed under the MIT License.
@@ -5,10 +6,8 @@ See LICENSE.txt
 */
 
 var astw = require('astw-babylon');
+var glob = require('glob');
 
-var filename = 'test.js';
-
-var walk = astw(require('fs').readFileSync(process.argv[2]).toString());
 
 console.log("!_TAG_FILE_FORMAT	2	/extended format/");
 console.log("!_TAG_FILE_SORTED	0	/0=unsorted, 1=sorted, 2=foldcase/");
@@ -32,15 +31,24 @@ var handlers = {
     }}
 };
 
-walk(processItem);
+var filePattern = process.argv[2];
+glob.sync(filePattern).forEach(doFile);
 
-function processItem(item) {
-    var handler = handlers[item.type];
-    if (handler) {
-        var type = typeof handler.type === 'function' ? handler.type(item) : handler.type;
-        var opts = typeof handler.opts === 'function' ? handler.opts(item) : {};
-        tag(item, filename, type, opts);
-    }
+function doFile (filename) {
+    var walk = astw(require('fs').readFileSync(filename).toString());
+
+    walk(processItem(filename));
+}
+
+function processItem (filename) {
+    return function (item) {
+        var handler = handlers[item.type];
+        if (handler) {
+            var type = typeof handler.type === 'function' ? handler.type(item) : handler.type;
+            var opts = typeof handler.opts === 'function' ? handler.opts(item) : {};
+            tag(item, filename, type, opts);
+        }
+    };
 }
 
 function tag (item, filename, type, opts) {
