@@ -25,3 +25,5 @@ function Bar () {
 }
 
 Bar.prototype.bonk = 2;
+
+const { c, d } = {};
