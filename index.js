@@ -82,6 +82,7 @@ function processItem (filename) {
 
 function tag (item, filename, type, opts, _name) {
   var name = _name || item[item.id ? 'id' : item.key ? 'key' : 'local'].name;
+  if (!name) return;
   var tag = [
     name,
     filename,
