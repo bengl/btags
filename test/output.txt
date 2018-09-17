@@ -1,0 +1,20 @@
+!_TAG_FILE_FORMAT	2	/extended format/
+!_TAG_FILE_SORTED	0	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Bryan English	/bryan@bryanenglish.com/
+!_TAG_PROGRAM_NAME	btags	//
+!_TAG_PROGRAM_URL	http://github.com/bengl/btags	/github repository/
+!_TAG_PROGRAM_VERSION	{{{VERSION}}}	//
+Foo	test/file.js	1;"	i
+q	test/file.js	2;"	i
+r	test/file.js	2;"	i
+jack	test/file.js	3;"	i
+x	test/file.js	7;"	m	class:FooFoo
+constructor	test/file.js	6;"	m	class:FooFoo
+foo	test/file.js	10;"	m	class:FooFoo
+FooFoo	test/file.js	5;"	c
+x	test/file.js	15;"	v
+y	test/file.js	16;"	v
+a	test/file.js	17;"	v
+b	test/file.js	17;"	v
+baz	test/file.js	20;"	m	class:Bar
+Bar	test/file.js	19;"	c
