@@ -36,11 +36,14 @@ var handlers = {
       return item.left.property.name;
     },
     opts: function (item) {
-      var classDeclaration = item.parent.parent.parent.parent.parent;
-      if (classDeclaration) {
-        return { class: classDeclaration.id.name };
+      var parent = item.parent;
+      while (parent && !["ClassDeclaration", "FunctionDeclaration"].includes(parent.type)) {
+        parent = parent.parent;
+      }
+      if (!parent) {
+        return {};
       } else {
-        return { class: item.parent.parent.parent.id.name };
+        return {class: parent.id.name};
       }
   }},
   VariableDeclarator: {type: 'v'},
