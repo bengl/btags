@@ -4,7 +4,11 @@ import {john as jack} from "joe";
 
 class FooFoo extends Foo {
   constructor () {
-    this.x = 2
+    this.x = 2;
+
+    if (a) {
+      this.y = 3;
+    }
   }
 
   foo (cb) {

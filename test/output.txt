@@ -9,12 +9,13 @@ q	test/file.js	2;"	i
 r	test/file.js	2;"	i
 jack	test/file.js	3;"	i
 x	test/file.js	7;"	m	class:FooFoo
+y	test/file.js	10;"	m	class:FooFoo
 constructor	test/file.js	6;"	m	class:FooFoo
-foo	test/file.js	10;"	m	class:FooFoo
+foo	test/file.js	14;"	m	class:FooFoo
 FooFoo	test/file.js	5;"	c
-x	test/file.js	15;"	v
-y	test/file.js	16;"	v
-a	test/file.js	17;"	v
-b	test/file.js	17;"	v
-baz	test/file.js	20;"	m	class:Bar
-Bar	test/file.js	19;"	c
+x	test/file.js	19;"	v
+y	test/file.js	20;"	v
+a	test/file.js	21;"	v
+b	test/file.js	21;"	v
+baz	test/file.js	24;"	m	class:Bar
+Bar	test/file.js	23;"	c
